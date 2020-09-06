@@ -11,6 +11,16 @@ html = bs(r.content, 'html.parser')
 
 # qwe = html.find("div", {"id": "offices"})
 # ewq = qwe.select('.b-table__row')[0]
-dollar_buy = html.find("div", {"id": "offices"}).select('.b-table__row')[0].select('.b-table__td')[3].text
-dollar_sell = html.find("div", {"id": "offices"}).select('.b-table__row')[0].select('.b-table__td')[5].text
-print(dollar_buy, dollar_sell)
+places = ["offices"]
+price = []
+for i in places:
+    dollar_buy = html.find("div", {"id": i}).select('.b-table__row')[0].select('.b-table__td')[3].text
+    dollar_sell = html.find("div", {"id": i}).select('.b-table__row')[0].select('.b-table__td')[5].text
+    euro_buy = html.find("div", {"id": i}).select('.b-table__row')[1].select('.b-table__td')[3].text
+    euro_sell = html.find("div", {"id": i}).select('.b-table__row')[1].select('.b-table__td')[5].text
+    data = {'dollar_buy': dollar_buy,
+            'dollar_sell': dollar_sell,
+            'euro_buy': euro_buy,
+            'euro_sell': euro_sell}
+    price.append(i)
+print(price)
